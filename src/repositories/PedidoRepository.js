@@ -1,5 +1,5 @@
 import sequelize from "../database/Connection.js";
-import Pedido from "../database/Pedido.js";
+import Pedido from "../model/Pedido.js";
 
 
 class PedidoRepository {

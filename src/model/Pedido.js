@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "./Connection.js";
+import sequelize from "../database/Connection.js";
 
 class Pedido extends Model {}
 

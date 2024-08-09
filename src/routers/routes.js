@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import PedidoController from './controllers/PedidoController.js'
+import PedidoController from '../controllers/PedidoController.js'
 
 
 const router = Router()
