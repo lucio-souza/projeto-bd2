@@ -56,9 +56,11 @@ function displayData(data){
         const imgAtualizar = document.createElement('img');
 
         imgApagar.classList.add('img');
+        imgApagar.id='img-apagar';
         imgApagar.src = './imagens/54324.png';
 
         imgAtualizar.classList.add('img');
+        imgAtualizar.id='img-atualizar';
         imgAtualizar.src = './imagens/lapis.png';
         
         id.textContent = i.id;
@@ -135,8 +137,17 @@ button.addEventListener('click',()=>{
     fetchData();
 })
 
-function apagarData(id){
 
-}
+
+document.getElementById('dados').addEventListener('click',(event)=>{
+        if(event.target.tagName === 'IMG' && event.target.id==='img-apagar') {
+            const button = event.target.closest('button');
+            id = button.dataset.id;
+            fetch(`http://localhost:3000/pedidos/${id}`,{
+                method: 'DELETE'
+            })
+            .then(e=>fetchData());
+        }
+    })
 
 fetchData()
