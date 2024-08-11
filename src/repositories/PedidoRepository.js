@@ -10,7 +10,7 @@ class PedidoRepository {
       const pedido = Pedido.findAll();
       return pedido;
     } catch (error) {
-      console.pedido('Erro ao buscar todos os pedidos:', error);
+      console.error('Erro ao buscar todos os pedidos:', error);
       throw error;
     }
   }

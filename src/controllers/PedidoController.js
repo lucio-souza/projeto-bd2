@@ -15,9 +15,13 @@ class PedidoController {
     }
 
     async add (req, res) {
-        const newPedido = req.body;
-        const data = await PedidoRepository.createPedido(newPedido)
-        res.json(data)
+        try {
+            const newPedido = req.body;
+            const data = await PedidoRepository.createPedido(newPedido);
+            res.json(data);
+        } catch (error) {
+            res.status(400).send('erro ao criar usuario');
+        }
     }
 
     async update (req,res) {
