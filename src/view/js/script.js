@@ -120,17 +120,23 @@ button.addEventListener('click',()=>{
         body: JSON.stringify(Pedido)
     })
     .then(data=> {
-        const msg=document.getElementById('erro');
+        const msg=document.getElementById('msg');
         if(data.status===400){
             msg.style.color='#ff0000';
             msg.textContent='Já existe um usuario com esse CPF';
-        }
-        msg.style.color='#32CD32';
+        }else{
+        msg.style.color='#057708';
         msg.textContent='Usuario criado com sucesso';
+        }
     })
     .catch(error => {
         console.error('Erro na requisição:', error);
     });
-});
+    fetchData();
+})
+
+function apagarData(id){
+
+}
 
 fetchData()

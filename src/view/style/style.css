@@ -5,7 +5,7 @@
 }
 
 body{
-    background-color: lightslategray;
+    background-color: #778899;
 }
 
 #map { 
@@ -18,7 +18,7 @@ body{
 main{
     display: flex;
     flex-direction: row;
-    margin: 50px 50px;
+    margin: 50px 50px 0 50px;
 }
 
 .formulario{
@@ -30,6 +30,7 @@ main{
 .formulario input{
     width: 25vw;
     height: 4vh;
+    min-height: 25px;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 50px;
@@ -45,6 +46,7 @@ label{
     margin-top: 10px;
     width: 8vw;
     height: 6vh;
+    min-height: 35px;
     align-self: center;
     background-color: rgb(11, 115, 184);
     color: aliceblue;
@@ -87,9 +89,15 @@ label{
     width: 30px;
     height: 30px;
     cursor: pointer;
+    text-align: center;
 }
 
 #dados button{
     background: none; 
     border: none;
+}
+
+#msg{
+    margin:15px 0 40px 0;
+    text-align: center;
 }
