@@ -21,13 +21,28 @@
             <input type="text" placeholder="digite o nome do restaurante" id="restaurante">
             <label for="cliente">Nome do Cliente</label>
             <input type="text" placeholder="digite o nome do cliente" id="cliente">
-            <label for="cliente">Nome do Cliente</label>
-            <input type="text" placeholder="digite o cpf do cliente" id="cliente">
+            <label for="cpf">CPF do Cliente</label>
+            <input type="text" placeholder="digite o cpf do cliente" id="cpf">
             <label for="pedido">Pedido Realizado</label>
             <input type="text" placeholder="digite a descrição do pedido" id="pedido">
-            <button type="submit" class="btn">enviar</button>
+            <button type="submit" class="btn" id="button">enviar</button>
         </section>
+        
     </main>
-    <script src="./js/map.js"></script>
+    <table class="tabela">
+        <thead class="tabela-cabecalho">
+            <tr>
+                <th>id</th>
+                <th>restaurante</th>
+                <th>cliente</th>
+                <th>CPF</th>
+                <th>descrição</th>
+                <th>latitude</th>
+                <th>longetude</th>
+            </tr>
+            <tbody id="dados"></tbody>
+        </thead>
+    </table>
+    <script src="./js/script.js"></script>
 </body>
 </html>

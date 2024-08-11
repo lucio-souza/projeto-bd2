@@ -35,5 +35,4 @@ class PedidoController {
 
 }
 
-
 export default new PedidoController
