@@ -52,7 +52,6 @@ class PedidoRepository {
       }
       pedido.restaurante = updatedData.restaurante;
       pedido.cliente = updatedData.cliente;
-      pedido.cpf = updatedData.cpf;
       pedido.descricaoPedido = updatedData.descricaoPedido;
       pedido.localizacao = updatedData.localizacao;
       const updatedPedido = await pedido.save();

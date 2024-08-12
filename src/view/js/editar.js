@@ -33,14 +33,12 @@ btnEditar.addEventListener('click',()=>{
 
     const restaurante=document.getElementById('restaurante').value;
     const cliente=document.getElementById('cliente').value;
-    const cpf=document.getElementById('cpf').value;
     const descricaoPedido=document.getElementById('pedido').value;
     const coordinates=[marker.getLatLng().lng, marker.getLatLng().lat];
 
     const Pedido={
         restaurante,
         cliente,
-        cpf,
         descricaoPedido,
         "localizacao":{
             "type":"Point",
