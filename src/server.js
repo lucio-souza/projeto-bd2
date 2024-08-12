@@ -1,25 +1,23 @@
-import express from 'express'
-import router from './routers/routes.js'
-import cors from 'cors'
+import express from 'express';
+import router from './routers/routes.js';
+import cors from 'cors';
 
 const app = express();
 
 const corsOptions = {
-    origin: ['http://127.0.0.1:5500'], // A URL do seu frontend
+    origin: [`http://127.0.0.1:5500`],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type,Authorization'
 };
-  
-  app.use(cors(corsOptions));
 
-//determina que o app leia obody das  req com json
-app.use(express.json())
+app.use(cors(corsOptions));
 
-//determina a utilizaçao das rotas
-app.use(router)
+app.use(express.json());
+
+app.use(router);
 
 const port = "3000";
 
-app.listen(port, ()=>{
-    console.log('pai ta on. http://localhost:3000')
-})
+app.listen(port, () => {
+    console.log(`Servidor rodando em http://localhost:3000`);
+});
