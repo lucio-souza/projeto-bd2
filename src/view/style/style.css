@@ -8,6 +8,11 @@ body{
     background-color: #778899;
 }
 
+a{
+    text-decoration: none;
+    color: aliceblue;
+}
+
 #map { 
     width: 35vw;
     height: 45vh;
@@ -62,6 +67,10 @@ label{
 
 .btn:active{
     border: solid rgb(11, 115, 184) 1px;
+}
+
+.btn-voltar{
+    margin:0 40px;
 }
 
 .tabela {

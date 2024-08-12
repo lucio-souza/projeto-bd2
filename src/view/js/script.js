@@ -53,7 +53,10 @@ function displayData(data){
         const imgApagar = document.createElement('img');
         const atualizar=document.createElement('td')
         const buttonAtualizar = document.createElement('button');
+        const link=document.createElement('a');
         const imgAtualizar = document.createElement('img');
+
+        link.href=`./editar.html?id=${i.id}`
 
         imgApagar.classList.add('img');
         imgApagar.id='img-apagar';
@@ -75,7 +78,8 @@ function displayData(data){
         buttonApagar.dataset.id = i.id;
         apagar.appendChild(buttonApagar);
 
-        buttonAtualizar.appendChild(imgAtualizar);
+        link.appendChild(imgAtualizar)
+        buttonAtualizar.appendChild(link);
         buttonAtualizar.dataset.id=i.id;
         atualizar.appendChild(buttonAtualizar);
 
@@ -95,7 +99,6 @@ function displayData(data){
 
 
 const button = document.getElementById('button');
-
 button.addEventListener('click',()=>{
     const restaurante=document.getElementById('restaurante').value;
     const cliente=document.getElementById('cliente').value;
@@ -128,7 +131,7 @@ button.addEventListener('click',()=>{
             msg.textContent='Já existe um usuario com esse CPF';
         }else{
         msg.style.color='#057708';
-        msg.textContent='Usuario criado com sucesso';
+        msg.textContent='Pedido criado com sucesso';
         }
     })
     .catch(error => {
@@ -136,8 +139,6 @@ button.addEventListener('click',()=>{
     });
     fetchData();
 })
-
-
 
 document.getElementById('dados').addEventListener('click',(event)=>{
         if(event.target.tagName === 'IMG' && event.target.id==='img-apagar') {
@@ -149,5 +150,7 @@ document.getElementById('dados').addEventListener('click',(event)=>{
             .then(e=>fetchData());
         }
     })
+
+
 
 fetchData()
