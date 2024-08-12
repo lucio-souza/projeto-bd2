@@ -15,10 +15,10 @@ class PedidoRepository {
     }
   }
 
-  // Busca um pedido pelo ID
-  async getPedidoByCpfClient(id) {
+  // Busca um pedido pelo cpf
+  async getPedidoByCpfClient(cpf) {
     try {
-      const pedido = await Pedido.findByPk(id);
+      const pedido = await Pedido.findOne({ where: { cpf } });
       return pedido;
     } catch (error) {
       console.error('Erro ao buscar pedido do cliente por CPF', error);

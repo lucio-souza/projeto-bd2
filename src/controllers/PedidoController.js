@@ -9,8 +9,8 @@ class PedidoController {
     }
 
     async find (req,res){
-        const id = req.params.id
-        const data = await PedidoRepository.getPedidoByCpfClient(id)
+        const cpf = req.params.cpf;
+        const data = await PedidoRepository.getPedidoByCpfClient(cpf)
         res.status(200).json(data)
     }
 

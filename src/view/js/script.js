@@ -138,7 +138,26 @@ button.addEventListener('click',()=>{
         console.error('Erro na requisição:', error);
     });
     fetchData();
-})
+});
+
+const buttonPesquisar=document.getElementById('btn-enviar');
+buttonPesquisar.addEventListener('click', () => {
+    const cpf = document.getElementById('cpf').value;
+
+    fetch(`http://localhost:3000/pedidos/${cpf}`)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`Erro na requisição: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(res => {
+            displayData([res]);
+        })
+        .catch(error => {
+            console.error('Erro ao buscar o usuário:', error);
+        });
+});
 
 document.getElementById('dados').addEventListener('click',(event)=>{
         if(event.target.tagName === 'IMG' && event.target.id==='img-apagar') {

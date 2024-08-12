@@ -110,3 +110,29 @@ label{
     margin:15px 0 40px 0;
     text-align: center;
 }
+
+.pesquisar {
+    display: flex;
+    align-items: center;
+    margin: 0 0 20px 430px;
+}
+.inp-pesquisar {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 50px 0 0 50px;
+    width: 350px;
+    height: 30px;
+}
+.btn-enviar{
+    border: none;
+    background-color: #6482AD;
+    border-radius:0% 50% 50% 0%;
+    width: 40px; 
+    height: 30px; 
+    cursor: pointer;
+}
+.img-btn {
+    width: 30px; 
+    height: 30px; 
+}
+
