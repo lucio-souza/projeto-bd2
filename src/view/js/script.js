@@ -1,5 +1,9 @@
 import {lat,lng} from './map.js';
 
+let num=0;
+
+let pessoas=[];
+
 function fetchData(){
     fetch("http://localhost:3000/pedidos")
     .then(response => response.json()) 
@@ -12,6 +16,7 @@ function displayData(data){
     dados.innerHTML = '';
 
     data.forEach(i => {
+        pessoas.push(i);
         const tr = document.createElement('tr');
         
         const id = document.createElement('td');
@@ -29,7 +34,7 @@ function displayData(data){
         const link=document.createElement('a');
         const imgAtualizar = document.createElement('img');
 
-        link.href=`./editar.html?id=${i.id}`
+        link.href=`./editar.html?id=${i.id}&cpf=${i.cpf}`;
 
         imgApagar.classList.add('img');
         imgApagar.id='img-apagar';
@@ -53,7 +58,6 @@ function displayData(data){
 
         link.appendChild(imgAtualizar)
         buttonAtualizar.appendChild(link);
-        buttonAtualizar.dataset.id=i.id;
         atualizar.appendChild(buttonAtualizar);
 
         tr.appendChild(id);
@@ -67,6 +71,7 @@ function displayData(data){
         tr.appendChild(atualizar);
 
         dados.appendChild(tr);
+        num++;
     })
 }
 
@@ -134,16 +139,14 @@ buttonPesquisar.addEventListener('click', () => {
 });
 
 document.getElementById('dados').addEventListener('click',(event)=>{
-        if(event.target.tagName === 'IMG' && event.target.id==='img-apagar') {
-            const button = event.target.closest('button');
-            id = button.dataset.id;
-            fetch(`http://localhost:3000/pedidos/${id}`,{
-                method: 'DELETE'
-            })
-            .then(e=>fetchData());
-        }
-    })
-
-
+    if(event.target.tagName === 'IMG' && event.target.id==='img-apagar') {
+        const button = event.target.closest('button');
+        id = button.dataset.id;
+        fetch(`http://localhost:3000/pedidos/${id}`,{
+            method: 'DELETE'
+        })
+        .then(e=>fetchData());
+    }
+})
 
 fetchData()
