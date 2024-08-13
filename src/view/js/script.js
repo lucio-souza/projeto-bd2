@@ -1,9 +1,5 @@
 import {lat,lng} from './map.js';
 
-let num=0;
-
-let pessoas=[];
-
 function fetchData(){
     fetch("http://localhost:3000/pedidos")
     .then(response => response.json()) 
@@ -16,7 +12,6 @@ function displayData(data){
     dados.innerHTML = '';
 
     data.forEach(i => {
-        pessoas.push(i);
         const tr = document.createElement('tr');
         
         const id = document.createElement('td');
@@ -71,7 +66,6 @@ function displayData(data){
         tr.appendChild(atualizar);
 
         dados.appendChild(tr);
-        num++;
     })
 }
 
