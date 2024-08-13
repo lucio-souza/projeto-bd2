@@ -135,7 +135,7 @@ buttonPesquisar.addEventListener('click', () => {
 document.getElementById('dados').addEventListener('click',(event)=>{
     if(event.target.tagName === 'IMG' && event.target.id==='img-apagar') {
         const button = event.target.closest('button');
-        id = button.dataset.id;
+        const id = button.dataset.id;
         fetch(`http://localhost:3000/pedidos/${id}`,{
             method: 'DELETE'
         })
