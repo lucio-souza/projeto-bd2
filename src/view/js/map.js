@@ -1,5 +1,5 @@
-let lat;
-let lng;
+let lat=-38.5601517;
+let lng=-6.88769800;
 
 let map = L.map('map', {
     center: [-6.887698002563706, -38.56015173326553],

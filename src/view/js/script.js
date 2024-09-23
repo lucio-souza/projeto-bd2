@@ -29,17 +29,17 @@ function displayData(data){
         const link=document.createElement('a');
         const imgAtualizar = document.createElement('img');
 
-        link.href=`./editar.html?id=${i.id}&cpf=${i.cpf}`;
+        link.href=`./editar.html?id=${i._id}&cpf=${i.cpf}`;
 
         imgApagar.classList.add('img');
         imgApagar.id='img-apagar';
         imgApagar.src = './imagens/54324.png';
 
         imgAtualizar.classList.add('img');
-        imgAtualizar.id='img-atualizar';
+        imgAtualizar._id='img-atualizar';
         imgAtualizar.src = './imagens/lapis.png';
         
-        id.textContent = i.id;
+        id.textContent = i._id;
         restaurante.textContent = i.restaurante;
         cliente.textContent = i.cliente;
         cpf.textContent = i.cpf;
@@ -48,7 +48,7 @@ function displayData(data){
         longitude.textContent = i.localizacao.coordinates[0];
         
         buttonApagar.appendChild(imgApagar);
-        buttonApagar.dataset.id = i.id;
+        buttonApagar.dataset.id = i._id;
         apagar.appendChild(buttonApagar);
 
         link.appendChild(imgAtualizar)

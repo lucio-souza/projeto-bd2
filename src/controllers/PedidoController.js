@@ -15,26 +15,28 @@ class PedidoController {
     }
 
     async add (req, res) {
-        try {
             const newPedido = req.body;
             const data = await PedidoRepository.createPedido(newPedido);
-            res.json(data);
-        } catch (error) {
-            res.status(400).send('erro ao criar usuario');
-        }
+            data.status===201
+            ? res.status(201).json(data.pedido)
+            : res.status(400).json(data.error)
     }
 
     async update (req,res) {
         const id = req.params.id;
         const pedido = req.body;
         const data = await PedidoRepository.updatePedido(pedido, id);
-        res.json(data)
+        data.status===200
+        ? res.status(200).json(data.message)
+        : res.status(data.status).json(data.message)
     }
 
     async delete (req,res) {
         const id = req.params.id;
         const data = await PedidoRepository.deletePedido(id);
-        res.json(data)
+        data.status===200
+        ? res.status(200).json(data.message)
+        : res.status(data.status).json(data.message)
     }
 
 }

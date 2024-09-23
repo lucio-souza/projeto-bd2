@@ -1,41 +1,43 @@
-import { Model, DataTypes } from "sequelize";
-import sequelize from "../database/Connection.js";
+import mongoose from "../database/mongoDb.js";
+import { Schema } from "mongoose";
+import {v4 as uuid} from "uuid"
 
-class Pedido extends Model {}
-
-
-Pedido.init({
-    id: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        defaultValue: DataTypes.UUIDV4
+const pedidoSchema=new Schema({
+    _id:{
+        type:String,
+        default:()=>uuid()
     },
-    restaurante: {
-        type: DataTypes.STRING,
-        allowNull: false
+    restaurante:{
+        type:String,
+        required:true
     },
-    cliente: {
-        type: DataTypes.STRING,
-        allowNull:false,
-        unique: false,
+    cliente:{
+        type:String,
+        required:true
     },
-    cpf: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+    cpf:{
+        type:String,
+        unique:true,
+        required:true
     },
     descricaoPedido: {
-        type:DataTypes.STRING,
-        allowNull:false,
-        unique: false
+        type:String
     },
-     localizacao: {
-        type:DataTypes.GEOMETRY,
-        allowNull:false
-     }   
-    }, {
-        sequelize,
-        modelName: 'Pedido'        
-    });
+    localizacao: {
+        type:{
+            type:String,
+            enum:['Point'],
+            required: true
+        },
+        coordinates: {
+        type: [Number],
+        required: true,
+        }
+    }
+})
+
+pedidoSchema.index({restaurante:'text',cliente:'text'},{default_language:'pt',weights:{restaurante:2,cliente:1}})
+
+const Pedido=mongoose.model('Pedido',pedidoSchema);
 
 export default Pedido;

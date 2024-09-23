@@ -1,13 +1,11 @@
-import sequelize from "../database/Connection.js";
 import Pedido from "../model/Pedido.js";
-
 
 class PedidoRepository {
   
   // Busca todos os pedidos
   async getAllPedidos() {
     try {
-      const pedido = Pedido.findAll();
+      const pedido = Pedido.find();
       return pedido;
     } catch (error) {
       console.error('Erro ao buscar todos os pedidos:', error);
@@ -18,7 +16,7 @@ class PedidoRepository {
   // Busca um pedido pelo cpf
   async getPedidoByCpfClient(cpf) {
     try {
-      const pedido = await Pedido.findOne({ where: { cpf } });
+      const pedido = await Pedido.findOne({ cpf }).exec();
       return pedido;
     } catch (error) {
       console.error('Erro ao buscar pedido do cliente por CPF', error);
@@ -36,59 +34,42 @@ class PedidoRepository {
         descricaoPedido: newPedidoData.descricaoPedido,
         localizacao: newPedidoData.localizacao
     });
-      return pedido;
+      return {pedido,status:201};
     } catch (error) {
-      console.error('Erro ao criar pedido:', error);
-      throw error;
+      return {status:500,error}
     }
   }
 
   // Atualiza um pedido pelo ID
-  async updatePedido(updatedData,id ) {
+  async updatePedido(newPedidoData,id ) {
     try {
-      const pedido = await Pedido.findByPk(id);
-      if (!pedido) {
-        throw new Error('Pedido não encontrado');
+      const updatedPedido = await Pedido.findByIdAndUpdate(id,{
+        cliente:newPedidoData.cliente,
+        restaurante:newPedidoData.restaurante,
+        localizacao:newPedidoData.localizacao
+      });
+      if (!updatedPedido) {
+        return {status:404,message:"usuario inexistente"};
       }
-      pedido.restaurante = updatedData.restaurante;
-      pedido.cliente = updatedData.cliente;
-      pedido.descricaoPedido = updatedData.descricaoPedido;
-      pedido.localizacao = updatedData.localizacao;
-      const updatedPedido = await pedido.save();
-      return updatedPedido;
+      return {message:"usuario atualizado com sucesso",status:200};
     } catch (error) {
-      console.error('Erro ao atualizar pedido:', error);
-      throw error;
+      return {status:500,message:error}
     }
   };
 
   // Deleta um pedido pelo ID
   async deletePedido(id) {
     try {
-      const deleted = await Pedido.destroy({
-        where: { id }
-      });
-      if (deleted) {
-        return 'Pedido deletado com sucesso';
+      const deleted = await Pedido.findByIdAndDelete(id);
+      if (!deleted) {
+        return {status:404,message:"usuario inexistente"};
       }
-      throw new Error('Pedido não encontrado');
+      return {status:200,message:"usuario deletado com sucesso"}
     } catch (error) {
-      console.error('Erro ao deletar pedido:', error);
-      throw error;
+      return {status:500,message:error}
     }
   }
 
 }
-
-// Inicializando o banco de dados e criando a tabela de pedidos
-(async () => {
-  try {
-    await sequelize.sync({ force: true });
-    console.log('Banco de dados sincronizado');
-  } catch (error) {
-    console.error('Erro ao sincronizar o banco de dados:', error);
-  }
-})();
-
 
 export default new PedidoRepository;
