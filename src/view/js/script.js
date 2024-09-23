@@ -138,8 +138,7 @@ document.getElementById('dados').addEventListener('click',(event)=>{
         const id = button.dataset.id;
         fetch(`http://localhost:3000/pedidos/${id}`,{
             method: 'DELETE'
-        })
-        .then(e=>fetchData());
+        }).then(e=>fetchData());
     }
 })
 
