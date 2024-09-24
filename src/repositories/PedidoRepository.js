@@ -70,6 +70,27 @@ class PedidoRepository {
     }
   }
 
+  async searchPedido(search) {
+    try {
+      const pedidos = await Pedido.find({
+        $or: [
+          { cliente: { $regex: search, $options: 'i' } },
+          { restaurante: { $regex: search, $options: 'i' } }
+        ]
+      });
+  
+      if (pedidos.length === 0) {
+        return { status: 404, message: 'Nenhum pedido encontrado.' };
+      }
+      
+      return { status: 200, pedidos };
+  
+    } catch (error) {
+      console.error(error);
+      return { status: 500, message: 'Erro ao procurar pedidos.' };
+    }
+  }
+
 }
 
 export default new PedidoRepository;

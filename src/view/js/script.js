@@ -115,18 +115,16 @@ button.addEventListener('click',()=>{
 
 const buttonPesquisar=document.getElementById('btn-enviar');
 buttonPesquisar.addEventListener('click', () => {
-    const cpf = document.getElementById('cpf').value;
+    const search = document.getElementById('search').value;
 
-    fetch(`http://localhost:3000/pedidos/${cpf}`)
+    fetch(`http://localhost:3000/search?search=${search}`)
         .then(res => {
             if (!res.ok) {
                 throw new Error(`Erro na requisição: ${res.status}`);
             }
             return res.json();
         })
-        .then(res => {
-            displayData([res]);
-        })
+        .then(res => {displayData(res)})
         .catch(error => {
             console.error('Erro ao buscar o usuário:', error);
         });

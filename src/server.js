@@ -1,6 +1,7 @@
 import express from 'express';
 import router from './routers/routes.js';
 import cors from 'cors';
+import PedidoController from './controllers/PedidoController.js';
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use(router);
+app.get('/search',PedidoController.search)
 
 const port = "3000";
 

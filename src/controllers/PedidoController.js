@@ -5,7 +5,8 @@ class PedidoController {
 
     async list (req, res) {
         const data = await PedidoRepository.getAllPedidos()
-        res.json(data)
+        
+        res.status(200).json(data)
     }
 
     async find (req,res){
@@ -38,6 +39,15 @@ class PedidoController {
         ? res.status(200).json(data.message)
         : res.status(data.status).json(data.message)
     }
+
+    async search(req, res) {
+        const  {search}  = req.query;
+        const data = await PedidoRepository.searchPedido(search);
+
+        data.status===200
+        ? res.status(200).json(data.pedidos)
+        : res.status(data.status).json(data.message)
+      }
 
 }
 
